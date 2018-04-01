@@ -1,16 +1,21 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Socio.h"
 
 Socio::Socio()
 {
+	string _DNI = "";
+		string _nom = "";
+		string _cog = "";
+		string _pob = "";
+		char _quo;
 }
 
 void Socio::llegeixSociFitxer(ifstream &in_file) {
 	
 		in_file >> _DNI;
+		in_file.ignore();
 		getline(in_file, _nom);
 		getline(in_file, _cog);
-		getline(in_file, _s_cog);
 		getline(in_file, _pob);
 		in_file >> _quo;
 
@@ -55,25 +60,23 @@ bool Socio :: esMenorSoci(Socio &soci, unsigned opcio) const{
 		menor = _DNI < soci._DNI;
 	}
 	else if (opcio == 3) {
-		menor = (_cog + _s_cog) < (soci._cog + soci._s_cog);
-		if ((_cog + _s_cog) == (soci._cog + soci._s_cog)) {
-			menor = _nom < soci._nom;
-			if (_nom == soci._nom) {
-				menor = _DNI < soci._DNI;
+		menor = _cog <  soci._cog;
+		if (_cog ==  soci._cog) {
+			menor = _nom <  soci._nom;
+			if ( _nom ==  soci._nom) {
+				menor = _DNI <  soci._DNI;
 			}
-		}
-
-
+		 }
 	}
 	else {
 		menor = _pob < soci._pob;
 		if (_pob == soci._pob) {
-			menor = (_cog + _s_cog) < (soci._cog + soci._s_cog);
-			if ((_cog + _s_cog) == (soci._cog + soci._s_cog)) {
-				menor = _nom < soci._nom;
-				if (_nom == soci._nom) {
-					menor = _DNI < soci._DNI;
-				}
+			  menor = _cog < soci._cog;
+			 if  (_cog == soci._cog) {
+					 menor = _nom < soci._nom;
+					 if (_nom == soci._nom) {
+						 menor = _DNI < soci._DNI;
+					 }
 			}
 		}
 
@@ -83,7 +86,6 @@ bool Socio :: esMenorSoci(Socio &soci, unsigned opcio) const{
 }
 
 void Socio::mostraSoci() const{
-	cout << _DNI << " " << _nom << " " <<_cog << " " << _s_cog
-		<< " " << _pob << " " << _quo << endl;
+	cout << _DNI << " " << _nom << " " <<_cog << " "<< _pob << " " << _quo << endl;
 }
 

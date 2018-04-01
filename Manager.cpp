@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Manager.h"
 
 Manager::Manager()
@@ -51,7 +51,7 @@ void Manager::cercaDicotomica(string DNI, bool &is_there, int &pos_ele)const {
 }
 void Manager::llegeixFitxer() {
 	unsigned opcio_d = 1;
-	cout << "FITXER D'ENTRADA" << endl;
+	cout << "FITXER D'ENTRADA:" << endl;
 	string nom_fitxer;
 	cin >> nom_fitxer;
 	ifstream in_file(nom_fitxer.c_str());
@@ -153,7 +153,7 @@ void Manager:: baixaSociInpagats() {
 
 void Manager::llistaInpagats() const {
 	Manager manager;
-	unsigned opcio = 1;
+	unsigned opcio = 3;
 	for (int i = 0; i <a_n; i++) {
 		if (a_t[i].ComparaQuo('N')) {
 			manager.insercioOrdenada(a_t[i], opcio);
@@ -179,11 +179,12 @@ void  Manager::llistaOrdenatSocis()const {
 	cout << "DNI" << "      " << "NOM" << "   " << "COGNOM"
 		<< "   " << "POBLACIO" << "   " << "S/N" << endl;
 	Manager manager;
-	char opcio = 3;
+	unsigned opcio = 4;
 	for (int i = 0; i < a_n; i++) {
 		manager.insercioOrdenada(a_t[i], opcio);
 	}
 	manager.mostraVector();
+	cout << endl;
 	unsigned impagat = 0;
 	string ciutat;
 	pobAmbMesInpagament(ciutat, impagat);
@@ -211,8 +212,9 @@ void Manager::pobAmbMesInpagament(string &poblacio, unsigned &impagat)const {
 			impagat = countador;
 			poblacio = ciutat;
 		}
-		else if (countador == impagat && countador != 0) {
-			if (poblacio<ciutat) {
+		
+		if (countador == impagat && countador != 0) {
+			if (poblacio > ciutat) {
 				poblacio = ciutat;
 			}
 			else {

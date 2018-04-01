@@ -24,7 +24,6 @@ public:
 private:
 	string _DNI;
 	string _nom;
-	string _s_cog;
 	string _cog;
 	string _pob;
 	char _quo;
